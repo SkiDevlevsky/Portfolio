@@ -239,7 +239,6 @@ body {
     cursor: default;
 }
 
-
 /* ===== Buttons ===== */
 .btn-gradient {
     display: inline-block;
@@ -500,4 +499,118 @@ body {
     .home-about{
         position: absolute;
     }
+}
+
+.content-creator {
+  padding: 5rem 2rem;
+  background-color: #0a0a0a;
+  overflow: hidden;
+}
+
+/* ===== YouTube Shorts Scroller ===== */
+.content-creator {
+  padding: 5rem 2rem;
+  background-color: #0a0a0a;
+  overflow: hidden;
+  position: relative;
+}
+
+.content-creator-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.shorts-scroller {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.shorts-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: scrollShorts 20s linear infinite;
+  padding: 0 50px; /* Give space for fade effects */
+}
+
+.shorts-scroller:hover .shorts-track {
+  animation-play-state: paused;
+}
+
+.short-card {
+  position: relative;
+  width: 280px;
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.short-card:hover {
+  transform: scale(1.02);
+}
+
+.short-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.short-label {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Fade overlay effects */
+.fade-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.fade-overlay.left {
+  left: 0;
+  background: linear-gradient(90deg, #0a0a0a 0%, rgba(10, 10, 10, 0) 100%);
+}
+
+.fade-overlay.right {
+  right: 0;
+  background: linear-gradient(270deg, #0a0a0a 0%, rgba(10, 10, 10, 0) 100%);
+}
+
+@keyframes scrollShorts {
+  to {
+    transform: translateX(calc(-50% - 10px));
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .short-card {
+    width: 220px;
+    height: 390px;
+  }
+  
+  .short-label {
+    font-size: 0.8rem;
+  }
+  
+  .fade-overlay {
+    width: 50px;
+  }
 }
