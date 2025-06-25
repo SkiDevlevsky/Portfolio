@@ -23,3 +23,20 @@ window.addEventListener("scroll", () => {
     }
   });
 });
+async function fetchDiscordData(inviteCode) {
+        try {
+          const response = await fetch(`https://discord.com/api/v10/invites/${inviteCode}?with_counts=true`);
+          if (!response.ok) throw new Error("Invalid Invite");
+          const data = await response.json();
+          const count = data.approximate_member_count;
+          document.getElementById(`${inviteCode}-count`).textContent = count;
+        } catch (err) {
+          console.warn(`Failed to load data for ${inviteCode}:`, err);
+          document.getElementById(`${inviteCode}-count`).textContent = "N/A";
+        }
+      }
+    
+      document.querySelectorAll('.project-card[data-invite]').forEach(card => {
+        const invite = card.getAttribute('data-invite');
+        fetchDiscordData(invite);
+      });
